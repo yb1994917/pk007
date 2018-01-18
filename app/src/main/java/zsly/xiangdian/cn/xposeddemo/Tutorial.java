@@ -132,15 +132,21 @@ public class Tutorial implements IXposedHookLoadPackage {
                     } catch (Exception e) {
                         Log.i("yang", "load clazzCallingPresenter err:" + Log.getStackTraceString(e));
                     }
-
                     if (clazzCallingPresenter != null) {
                         Class<?> aClass = XposedHelpers.findClass("com.xkdandroid.p005.calls.api.views.ICallingView", loader);
-                        XposedHelpers.findAndHookMethod(clazzCallingPresenter, "videoEnd", Context.class,long.class,int.class,aClass,new XC_MethodHook() {
+//                        XposedHelpers.findAndHookMethod(clazzCallingPresenter, "videoEnd", Context.class,long.class,int.class,aClass,new XC_MethodHook() {
+//                            @Override
+//                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+//                                Log.d("yang", "come in videoEnd");
+//                                param.args[2] = 1;
+//                                XposedBridge.log("set  videoEnd 1");
+//                            }
+//                        });
+
+                        XposedHelpers.findAndHookMethod(clazzCallingPresenter, "videoEnd", Context.class, long.class, int.class, aClass, new XC_MethodReplacement() {
                             @Override
-                            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                                Log.d("yang", "come in videoEnd");
-                                param.args[2] = 1;
-                                XposedBridge.log("set  videoEnd 1");
+                            protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                                return null;
                             }
                         });
                     }
