@@ -62,7 +62,7 @@ public class HookTianHu  implements IXposedHookLoadPackage {
             return;
         }
 
-        if (lpparam.packageName.equals("com.qtd.aac")){
+        if (lpparam.packageName.equals("com.qtd.aacd")){
         if (!dir.exists()) dir.mkdir();
             if(!file.exists()){
                 file.createNewFile();
@@ -379,17 +379,19 @@ public class HookTianHu  implements IXposedHookLoadPackage {
                         param.setResult(true);
                     }
                 });
-                findAndHookMethod("com.liveplatform.Xx", lpparam.classLoader, "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", Integer.class,new XC_MethodHook() {
+
+                //RoomActivity Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+                findAndHookMethod("com.liveplatform.Zzzzzzzzzzzzzz", lpparam.classLoader, "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", Integer.class,new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.beforeHookedMethod(param);
                           Log.d("TAG","Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  num ："+param.args[0]);
                           param.args[0]=new Integer(200);
-                        Field wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww = param.thisObject.getClass().getDeclaredField("Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+                        Field wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww = param.thisObject.getClass().getDeclaredField("Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww"); //hook RoomActivity
                         wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww.setAccessible(true);
                         Object o = wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww.get(param.thisObject);
                         Log.d("TAG",o.toString());
-                        Field wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww = o.getClass().getDeclaredField("Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+                        Field wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww = o.getClass().getDeclaredField("Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
                         wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww.setAccessible(true);
                         Object o1 = wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww.get(o);
                         Log.d("TAG",(String) o1);
@@ -412,11 +414,19 @@ public class HookTianHu  implements IXposedHookLoadPackage {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         super.afterHookedMethod(param);
-                        long l = System.currentTimeMillis() + 365 * 24 * 60 * 60 * 1000;
+                        long l = System.currentTimeMillis() + 365 * 24 * 60 * 60 * 1000*1000*10000;
                         Log.d("TAG","tv.danmaku.ijk.exo.demo.UserInfo setExpireTime ");
                         param.args[0]=l;
                     }
                 });
+                //卡密已失效   hook 没效果的
+//                findAndHookMethod("com.liveplatform.Wwwwwwwwwwwwwwwwwwwwwwwwwwwww", lpparam.classLoader, "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", Integer.class,new XC_MethodHook() {
+//                    @Override
+//                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+//                        super.afterHookedMethod(param);
+//                        param.setResult(200);
+//                    }
+//                });
             };
         });
 
