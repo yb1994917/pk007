@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="internalOnly"
+    package="zsly.xiangdian.cn.substratetest"
+    >
+    <application android:hasCode="false">
+        <meta-data
+            android:name="com.saurik.substrate.main"
+            android:value="zsly.xiangdian.cn.substratetest.Main"
+            />
+    </application>
+
+    <uses-permission android:name="cydia.permission.SUBSTRATE"/>
+</manifest>
