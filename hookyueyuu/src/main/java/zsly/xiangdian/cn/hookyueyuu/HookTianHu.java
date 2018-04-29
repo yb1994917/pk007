@@ -21,6 +21,7 @@ import java.util.Map;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -87,49 +88,91 @@ public class HookTianHu  implements IXposedHookLoadPackage {
                             param.setResult(9000);
                     }
                 });
-            }
+
+                findAndHookMethod("com.love.club.sv.base.ui.view.RechargeDialogActivity", lpparam.classLoader,"onCreate", Bundle.class, new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        Class<?> aClass = param.thisObject.getClass();
+                        Field u = findField(aClass, "u");
+                        u.setAccessible(true);
+                        u.set(param.thisObject,5);
+                    }
+                });      findAndHookMethod("com.netease.nim.uikit.bean.EnergyQMDBean", lpparam.classLoader,"getSweetLevel",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(8);
+                    }
+                });  findAndHookMethod("com.netease.nim.uikit.bean.EnergyQMDBean", lpparam.classLoader,"getSexLabel",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(2);
+                    }
+                });findAndHookMethod("com.netease.nim.uikit.bean.EnergyQMDBean", lpparam.classLoader,"getCoin",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(20000);
+                    }
+                });
+                findAndHookMethod("com.netease.nim.uikit.bean.EnergyQMDBean", lpparam.classLoader,"getBean",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(20000);
+                    }
+                });
+                findAndHookMethod("com.love.club.sv.common.net.HttpBaseResponse", lpparam.classLoader,"getResult",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(1);
+                    }
+                }); findAndHookMethod("com.love.club.sv.room.a.c", lpparam.classLoader,"i",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(false);
+                    }
+                });findAndHookMethod("com.love.club.sv.bean.http.ImCheckResponse$ImCheck", lpparam.classLoader,"get_mycoin",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(50000);
+                    }
+                    //打是能打  他妈的 秒断 对方挂断
+                });findAndHookMethod("com.love.club.sv.bean.http.ImCheckResponse$ImCheck", lpparam.classLoader,"getPrice",  new XC_MethodHook() {
+                    @Override
+                    protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                        super.afterHookedMethod(param);
+                        param.setResult(1);
+                    }
+                });findAndHookMethod("com.love.club.sv.msg.avchat.e", lpparam.classLoader,"a", int.class,int.class, new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        Log.d("TAG","a(int i1,int i2)"+param.args[0]+" : "+param.args[1]);
+                        return null;
+                    }
+                });
+findAndHookMethod("com.love.club.sv.msg.avchat.e", lpparam.classLoader,"a", int.class,int.class, new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        Log.d("TAG","a(int i1,int i2)"+param.args[0]+" : "+param.args[1]);
+                        return null;
+                    }
+                });
+
+                findAndHookMethod("com.love.club.sv.msg.avchat.service.AVChatService", lpparam.classLoader,"e",  new XC_MethodReplacement() {
 
 
-
-        });
-        findAndHookMethod("com.love.club.sv.base.ui.view.RechargeDialogActivity", lpparam.classLoader,"onCreate", Bundle.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                super.afterHookedMethod(param);
-                Class<?> aClass = param.thisObject.getClass();
-                Field u = findField(aClass, "u");
-                u.setAccessible(true);
-                u.set(param.thisObject,"5");
-            }
-        });   findAndHookMethod("com.love.club.sv.base.ui.view.RechargeDialogActivity", lpparam.classLoader,"onCreate", Bundle.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                super.afterHookedMethod(param);
-                Class<?> aClass = param.thisObject.getClass();
-                Field u = findField(aClass, "u");
-                u.setAccessible(true);
-                u.set(param.thisObject,"5");
-            }
-        });        findAndHookMethod("com.netease.nim.uikit.session.fragment.MessageFragment", lpparam.classLoader,"onCreate", Bundle.class, new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                super.afterHookedMethod(param);
-                Class<?> aClass = param.thisObject.getClass();
-                Field u = findField(aClass, "u");
-                u.setAccessible(true);
-                u.set(param.thisObject,"5");
-            }
-        });  findAndHookMethod("com.netease.nim.uikit.bean.EnergyQMDBean", lpparam.classLoader,"getSweetLevel",  new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                super.afterHookedMethod(param);
-                param.setResult(8);
-            }
-        });findAndHookMethod("com.netease.nim.uikit.bean.EnergyQMDBean", lpparam.classLoader,"getCoin",  new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                super.afterHookedMethod(param);
-                param.setResult(20000);
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                            Log.d("TAG","e   方法  run");
+                            return null;
+                    }
+                });
             }
         });
     }
